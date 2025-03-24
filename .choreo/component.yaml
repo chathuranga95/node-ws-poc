@@ -11,7 +11,7 @@ endpoints:
   - name: http-push
     displayName: Push
     service:
-      port: 9098
+      port: 9099
       basePath: /
     type: REST
     networkVisibilities:

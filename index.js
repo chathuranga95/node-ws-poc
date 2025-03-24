@@ -5,7 +5,7 @@ const http = require('http');
 const clients = [];
 
 // Create HTTP server for REST endpoint
-const server = http.createServer((req, res) => {
+const restServer = http.createServer((req, res) => {
   if (req.method === 'POST' && req.url === '/push') {
     let body = '';
     
@@ -30,8 +30,9 @@ const server = http.createServer((req, res) => {
   }
 });
 
-// Create WebSocket server attached to the HTTP server
-const wss = new WebSocket.Server({ server });
+// Create WebSocket server
+const wsServer = http.createServer();
+const wss = new WebSocket.Server({ server: wsServer });
 
 // Event listener for when a client connects
 wss.on('connection', function connection(ws) {
@@ -63,7 +64,12 @@ wss.on('connection', function connection(ws) {
     ws.send('Welcome to the WebSocket server!');
 });
 
-// Start the server
-server.listen(9098, () => {
-    console.log('HTTP and WebSocket server started on port 9098');
+// Start the REST server
+restServer.listen(9099, () => {
+    console.log('REST server started on port 9099');
+});
+
+// Start the WebSocket server
+wsServer.listen(9098, () => {
+    console.log('WebSocket server started on port 9098');
 });
