@@ -1,0 +1,19 @@
+schemaVersion: 1.1
+endpoints:
+  - name: chat-ws
+    displayName: Chat WS
+    service:
+      port: 9098
+      basePath: /
+    type: WS
+    networkVisibilities:
+      - Public
+  - name: http-push
+    displayName: Push
+    service:
+      port: 9098
+      basePath: /
+    type: REST
+    networkVisibilities:
+      - Public
+    schemaFilePath: openapi/openapi.yaml
