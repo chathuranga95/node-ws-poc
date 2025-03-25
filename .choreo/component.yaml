@@ -4,14 +4,14 @@ endpoints:
     displayName: Chat WS
     service:
       port: 9098
-      basePath: /
+      basePath: /ws
     type: WS
     networkVisibilities:
       - Public
   - name: http-push
     displayName: Push
     service:
-      port: 9099
+      port: 9098
       basePath: /
     type: REST
     networkVisibilities:
